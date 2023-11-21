@@ -1,5 +1,6 @@
 package site.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import site.stellarburgers.data.User;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -24,6 +25,7 @@ public class ChangeUserDataTests {
     }
 
     @Test
+    @DisplayName("Изменение заказа авторизованным пользователем")
     public void changeDataUserWithAuthorization() {
         ValidatableResponse responseRegister = userClient.register(user);
         bearerToken = responseRegister.extract().path("accessToken");
@@ -35,6 +37,7 @@ public class ChangeUserDataTests {
     }
 
     @Test
+    @DisplayName("Изменение заказа неавторизованным пользователем")
     public void changeDataUserWithoutAuthorization() {
         ValidatableResponse responseRegister = userClient.register(user);
 

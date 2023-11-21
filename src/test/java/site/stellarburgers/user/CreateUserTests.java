@@ -1,5 +1,6 @@
 package site.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import site.stellarburgers.data.User;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -24,6 +25,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Успешное создание юзера")
     public void createUserTest() {
         ValidatableResponse responseRegister = userClient.register(user);
         bearerToken = responseRegister.extract().path("accessToken");
@@ -31,6 +33,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при создании уже существующего юзера")
     public void createAlreadyExistsUserTest() {
         ValidatableResponse responseRegisterFirstUser = userClient.register(user);
         bearerToken = responseRegisterFirstUser.extract().path("accessToken");
@@ -40,6 +43,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при создании юзера без имени")
     public void createUserWithoutNameTest() {
         user.setName("");
         ValidatableResponse responseRegister = userClient.register(user);
@@ -48,6 +52,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при создании юзера без email")
     public void createUserWithoutEmailTest() {
         user.setEmail("");
         ValidatableResponse responseRegister = userClient.register(user);
@@ -56,6 +61,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при создании юзера без пароля")
     public void createUserWithoutPasswordTest() {
         user.setPassword("");
         ValidatableResponse responseRegister = userClient.register(user);

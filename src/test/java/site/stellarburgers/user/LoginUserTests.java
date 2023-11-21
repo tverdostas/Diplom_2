@@ -1,5 +1,6 @@
 package site.stellarburgers.user;
 
+import io.qameta.allure.junit4.DisplayName;
 import site.stellarburgers.data.User;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
@@ -27,6 +28,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Успешный логин пользователем")
     public void loginUser() {
         bearerToken = responseRegister.extract().path("accessToken");
 
@@ -35,6 +37,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при логине пользователя с неправильным паролем")
     public void loginUserWithWrongPass() {
         bearerToken = responseRegister.extract().path("accessToken");
 
@@ -44,6 +47,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при логине пользователя с неправильным email")
     public void loginUserWithWrongEmail() {
         bearerToken = responseRegister.extract().path("accessToken");
 

@@ -1,5 +1,6 @@
 package site.stellarburgers.order;
 
+import io.qameta.allure.junit4.DisplayName;
 import site.stellarburgers.data.Order;
 import site.stellarburgers.data.User;
 import io.restassured.response.ValidatableResponse;
@@ -35,6 +36,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создать заказ авторизованным пользователем")
     public void createOrderWithAuthorizationTest() {
         ValidatableResponse responseRegister = userClient.register(user);
         userClient.login(user);
@@ -45,6 +47,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создать заказ не авторизованным пользователем")
     public void createOrderWithoutAuthorizationTest() {
         bearerToken = "";
         ValidatableResponse responseCreateOrder = orderClient.create(order, bearerToken);
@@ -53,6 +56,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создать заказ авторизованным пользователем без ингредиентов")
     public void createOrderWithoutIngridientTest() {
         ValidatableResponse responseRegister = userClient.register(user);
         userClient.login(user);
@@ -66,6 +70,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создать заказ авторизованным пользователем с несуществующими ингредиентами")
     public void createOrderWithWrongIngridientTest() {
         ValidatableResponse responseRegister = userClient.register(user);
         userClient.login(user);

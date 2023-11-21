@@ -1,5 +1,6 @@
 package site.stellarburgers.order;
 
+import io.qameta.allure.junit4.DisplayName;
 import site.stellarburgers.data.Order;
 import site.stellarburgers.data.User;
 import io.restassured.response.ValidatableResponse;
@@ -32,6 +33,7 @@ public class GetOrderTests {
     }
 
     @Test
+    @DisplayName("Создать заказ авторизованным пользователем, получить созданный заказ")
     public void createOrderWithAuthorizationTest() {
         ValidatableResponse responseRegister = userClient.register(user);
         bearerToken = responseRegister.extract().path("accessToken");
@@ -44,6 +46,7 @@ public class GetOrderTests {
     }
 
     @Test
+    @DisplayName("Получение ошибки при запросе получения заказа неавторизованным пользователем")
     public void createOrderWithoutAuthorizationTest() {
         bearerToken = "";
         ValidatableResponse getClientOrder = orderClient.getClientOrder(bearerToken);
